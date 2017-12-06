@@ -21,6 +21,7 @@ task pushToGit(){
 		def grgit = org.ajoberstar.grgit.Grgit.open(dir: '.')
 		grgit.add(patterns: ['version.properties'])
 		grgit.commit(message: 'Bump version [ci skip]')
+		grgit.push()
 	}
 }
 
