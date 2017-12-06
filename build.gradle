@@ -36,7 +36,7 @@ task updateVersion(){
 	}
 }
 
-tasks.release.dependsOn updateVersion
+tasks.release.finalizedBy updateVersion
 
 // Dummy task for travisci
 task assemble{}
