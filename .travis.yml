@@ -6,4 +6,4 @@ cache:
 jdk:
   - oraclejdk8
 
-script: "./.travis/buildViaTravis.sh"
+script: "./travis/buildViaTravis.sh"
