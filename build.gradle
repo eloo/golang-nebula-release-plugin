@@ -6,7 +6,11 @@ plugins {
 golang {
     packagePath = 'github.com/eloo/golang-nebula-release-plugin'
 }
+
 dependencies {
     golang {
     }
 }
+
+// Dummy task for travisci
+task assemble{}
