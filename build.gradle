@@ -36,6 +36,10 @@ finalSetup{
 		props.store(propsFile.newWriter(), null)
 		println "Commit version"
 		def grgit = org.ajoberstar.grgit.Grgit.open(dir: '.')
+
+
+		println grgit.log(maxCommits: 5)
+	
 		grgit.add(patterns: ['version.properties'])
 		grgit.commit(message: 'Bump version [ci skip]')
 		println "FILE __________________________________"
