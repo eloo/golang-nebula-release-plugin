@@ -57,9 +57,9 @@ finalSetup{
 		println "Status __________________________________"
 		grgit.add(patterns: ['version.properties'])
 		grgit.commit(message: 'Bump version [ci skip]')
-		grgit.push()
+		grgit.push(all: true)
 		println "FILE __________________________________"
-		println new File('version.properties').text
+		println new File('.git/config').text
 		println "FILE __________________________________"
 		println "Status __________________________________"
 		println grgit.status().toString()
