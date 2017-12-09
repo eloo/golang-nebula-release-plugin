@@ -45,38 +45,38 @@ task status(type: Exec) {
   args "-c", "git status"
 }
 
-finalSetup{
-	doFirst{
-		println "FILE __________________________________"
-		println new File('version.properties').text
-		println "FILE __________________________________"
-		Properties props = new Properties()
-		File propsFile = new File('version.properties')
-		props.load(propsFile.newDataInputStream())
-		props.setProperty('version', version.toString())
-		props.store(propsFile.newWriter(), null)
-		println "Commit version"
-		def grgit = org.ajoberstar.grgit.Grgit.open(dir: '.')
-		grgit.remote.list().each { println it }
+// finalSetup{
+// 	doFirst{
+// 		println "FILE __________________________________"
+// 		println new File('version.properties').text
+// 		println "FILE __________________________________"
+// 		Properties props = new Properties()
+// 		File propsFile = new File('version.properties')
+// 		props.load(propsFile.newDataInputStream())
+// 		props.setProperty('version', version.toString())
+// 		props.store(propsFile.newWriter(), null)
+// 		println "Commit version"
+// 		def grgit = org.ajoberstar.grgit.Grgit.open(dir: '.')
+// 		grgit.remote.list().each { println it }
 
-		println grgit.log(maxCommits: 5)
-		println "Status __________________________________"
-		println grgit.status().toString()
-		println "Status __________________________________"
-		grgit.add(patterns: ['version.properties'])
-		grgit.commit(message: 'Bump version [ci skip]')
-		println "Push -___________________________________"
-		// grgit.push(all: true, force: true)
-		println "Push -___________________________________"
-		println "FILE __________________________________"
-		println new File('.git/config').text
-		println "FILE __________________________________"
-		println "Status __________________________________"
-		println grgit.status().toString()
-		println "Status __________________________________"
-	}
-	finalizedBy status, push
-}
+// 		println grgit.log(maxCommits: 5)
+// 		println "Status __________________________________"
+// 		println grgit.status().toString()
+// 		println "Status __________________________________"
+// 		grgit.add(patterns: ['version.properties'])
+// 		grgit.commit(message: 'Bump version [ci skip]')
+// 		println "Push -___________________________________"
+// 		// grgit.push(all: true, force: true)
+// 		println "Push -___________________________________"
+// 		println "FILE __________________________________"
+// 		println new File('.git/config').text
+// 		println "FILE __________________________________"
+// 		println "Status __________________________________"
+// 		println grgit.status().toString()
+// 		println "Status __________________________________"
+// 	}
+// 	finalizedBy status, push
+// }
 
 task updateVersion(){
 	finalizedBy pushToGit
