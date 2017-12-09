@@ -12,20 +12,10 @@ dependencies {
     }
 }
 
-// //
-// // Versioning
-// //
-// task pushToGit(){
-// 	doLast{
-// 	    println "Commit version"
-// 		def grgit = org.ajoberstar.grgit.Grgit.open(dir: '.')
-// 		grgit.add(patterns: ['version.properties'])
-// 		grgit.commit(message: 'Bump version [ci skip]')
-// 		grgit.push(force: true)
-// 	}
-// }
-
-finalSetup{
+//
+// Versioning
+//
+task updateVersion(){
 	doLast{
 		Properties props = new Properties()
 		File propsFile = new File('version.properties')
@@ -39,7 +29,7 @@ finalSetup{
 	}
 }
 
-// tasks.release.finalizedBy updateVersion
+tasks.release.dependsOn updateVersion
 
 // Dummy task for travisci
 task assemble{}
