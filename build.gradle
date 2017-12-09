@@ -35,9 +35,12 @@ finalSetup{
 		def grgit = org.ajoberstar.grgit.Grgit.open(dir: '.')
 		grgit.add(patterns: ['version.properties'])
 		grgit.commit(message: 'Bump version [ci skip]')
-		println "Status __________________________________-"
+		println "FILE __________________________________"
+		println new File('version.properties').text
+		println "FILE __________________________________"
+		println "Status __________________________________"
 		println grgit.status().toString()
-		println "Status __________________________________-"
+		println "Status __________________________________"
 	}
 }
 task updateVersion(){
