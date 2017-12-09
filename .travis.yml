@@ -7,7 +7,4 @@ jdk:
   - oraclejdk8
 if: tag IS blank
 
-before_install:
-- sed -i 's/git:/https:/g' .git/config
-
 script: "./travis/buildViaTravis.sh"
