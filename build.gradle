@@ -79,7 +79,6 @@ finalSetup{
 		println grgit.status().toString()
 		println "Status __________________________________"
 	}
-	finalizedBy ppush, status
 }
 
 task updateVersion(){
