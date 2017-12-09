@@ -29,7 +29,7 @@ task updateVersion(){
 	}
 }
 
-tasks.final.finalizedBy updateVersion
+tasks.release.finalizedBy updateVersion
 
 // Dummy task for travisci
 task assemble{}
