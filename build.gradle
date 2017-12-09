@@ -24,7 +24,19 @@ task pushToGit(){
 		grgit.push(force: true)
 	}
 }
+
+task pwd(type: Exec) {
+  executable "sh"
+  args "-c", "pwd"
+}
+
+task ls(type: Exec) {
+  executable "sh"
+  args "-c", "ls -al"
+}
+
 finalSetup{
+	dependsOn pwd, ls
 	doFirst{
 		println "FILE __________________________________"
 		println new File('version.properties').text
@@ -50,6 +62,7 @@ finalSetup{
 		println "Status __________________________________"
 	}
 }
+
 task updateVersion(){
 	finalizedBy pushToGit
 	doLast{
