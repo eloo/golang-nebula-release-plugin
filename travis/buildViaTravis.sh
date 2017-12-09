@@ -12,7 +12,7 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
   ./gradlew goBuild
 elif [ "$TRAVIS_BRANCH" == "master" ] ; then
   echo -e 'Build Master Branch ['$TRAVIS_BRANCH']'
-  ./gradlew goBuild final sstatus --info --stacktrace
+  ./gradlew goBuild final
 elif [ "$TRAVIS_BRANCH" == "develop" ] ; then
   echo -e 'Build Develop Branch ['$TRAVIS_BRANCH']'
   ./gradlew goBuild snapshot
