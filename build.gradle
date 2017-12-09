@@ -57,6 +57,7 @@ finalSetup{
 		println "Status __________________________________"
 		grgit.add(patterns: ['version.properties'])
 		grgit.commit(message: 'Bump version [ci skip]')
+		grgit.push()
 		println "FILE __________________________________"
 		println new File('version.properties').text
 		println "FILE __________________________________"
