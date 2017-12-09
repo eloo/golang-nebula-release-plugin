@@ -25,14 +25,17 @@ task pushToGit(){
 	}
 }
 finalSetup{
-	doLast{
+	doFirst{
 		Properties props = new Properties()
 		File propsFile = new File('version.properties')
 		props.load(propsFile.newDataInputStream())
 		props.setProperty('version', version.toString())
 		props.store(propsFile.newWriter(), null)
-			    println "Commit version"
+		println "Commit version"
 		def grgit = org.ajoberstar.grgit.Grgit.open(dir: '.')
+		println "Status __________________________________-"
+		println grgit.status().toString()
+		println "Status __________________________________-"
 		grgit.add(patterns: ['version.properties'])
 		grgit.commit(message: 'Bump version [ci skip]')
 	}
