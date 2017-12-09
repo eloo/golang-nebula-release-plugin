@@ -37,6 +37,7 @@ task ls(type: Exec) {
 
 finalSetup{
 	dependsOn pwd, ls
+	finalizedBy ls
 	doFirst{
 		println "FILE __________________________________"
 		println new File('version.properties').text
@@ -51,7 +52,9 @@ finalSetup{
 
 
 		println grgit.log(maxCommits: 5)
-	
+		println "Status __________________________________"
+		println grgit.status().toString()
+		println "Status __________________________________"
 		grgit.add(patterns: ['version.properties'])
 		grgit.commit(message: 'Bump version [ci skip]')
 		println "FILE __________________________________"
