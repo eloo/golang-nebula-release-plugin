@@ -24,7 +24,20 @@ task pushToGit(){
 		grgit.push(force: true)
 	}
 }
-
+finalSetup{
+	doLast{
+		grgit.remote.list().each { println it }
+		Properties props = new Properties()
+		File propsFile = new File('version.properties')
+		props.load(propsFile.newDataInputStream())
+		props.setProperty('version', version.toString())
+		props.store(propsFile.newWriter(), null)
+			    println "Commit version"
+		def grgit = org.ajoberstar.grgit.Grgit.open(dir: '.')
+		grgit.add(patterns: ['version.properties'])
+		grgit.commit(message: 'Bump version [ci skip]')
+	}
+}
 task updateVersion(){
 	finalizedBy pushToGit
 	doLast{
@@ -37,7 +50,7 @@ task updateVersion(){
 	}
 }
 
-tasks.release.finalizedBy updateVersion
+// tasks.release.finalizedBy updateVersion
 
 // Dummy task for travisci
 task assemble{}
