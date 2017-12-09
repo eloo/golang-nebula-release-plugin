@@ -35,14 +35,18 @@ task ls(type: Exec) {
   args "-c", "ls -al"
 }
 
-task push(type: Exec) {
-  executable "sh"
-  args "-c", "git push"
-}
 
-task status(type: Exec) {
+task sstatus(type: Exec) {
   executable "sh"
   args "-c", "git status"
+  outputs.upToDateWhen { false }
+}
+
+task ppush(type: Exec) {
+  dependsOn status
+  executable "sh"
+  args "-c", "git push"
+  outputs.upToDateWhen { false }
 }
 
 finalSetup{
@@ -75,7 +79,7 @@ finalSetup{
 		println grgit.status().toString()
 		println "Status __________________________________"
 	}
-	finalizedBy status, push
+	finalizedBy ppush, status
 }
 
 task updateVersion(){
