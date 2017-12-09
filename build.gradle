@@ -49,7 +49,7 @@ finalSetup{
 		props.store(propsFile.newWriter(), null)
 		println "Commit version"
 		def grgit = org.ajoberstar.grgit.Grgit.open(dir: '.')
-
+		grgit.remote.list().each { println it }
 
 		println grgit.log(maxCommits: 5)
 		println "Status __________________________________"
