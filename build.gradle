@@ -45,7 +45,7 @@ task sstatus(type: Exec) {
 task ppush(type: Exec) {
   dependsOn status
   executable "sh"
-  args "-c", "git push"
+  args "-c", "git push origin HEAD:master"
   outputs.upToDateWhen { false }
 }
 
