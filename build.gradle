@@ -26,7 +26,6 @@ task pushToGit(){
 }
 finalSetup{
 	doLast{
-		grgit.remote.list().each { println it }
 		Properties props = new Properties()
 		File propsFile = new File('version.properties')
 		props.load(propsFile.newDataInputStream())
