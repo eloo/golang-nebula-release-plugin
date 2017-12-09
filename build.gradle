@@ -1,0 +1,45 @@
+plugins {
+    id 'com.github.blindpirate.gogradle' version '0.7.0'
+   	id 'nebula.release' version '6.1.0'
+}
+
+golang {
+    packagePath = 'github.com/eloo/golang-nebula-release-plugin'
+}
+
+dependencies {
+    golang {
+    }
+}
+
+// //
+// // Versioning
+// //
+// task pushToGit(){
+// 	doLast{
+// 	    println "Commit version"
+// 		def grgit = org.ajoberstar.grgit.Grgit.open(dir: '.')
+// 		grgit.add(patterns: ['version.properties'])
+// 		grgit.commit(message: 'Bump version [ci skip]')
+// 		grgit.push(force: true)
+// 	}
+// }
+
+finalSetup{
+	doLast{
+		Properties props = new Properties()
+		File propsFile = new File('version.properties')
+		props.load(propsFile.newDataInputStream())
+		props.setProperty('version', version.toString())
+		props.store(propsFile.newWriter(), null)
+		println "Commit version"
+		def grgit = org.ajoberstar.grgit.Grgit.open(dir: '.')
+		grgit.add(patterns: ['version.properties'])
+		grgit.commit(message: 'Bump version [ci skip]')
+	}
+}
+
+// tasks.release.finalizedBy updateVersion
+
+// Dummy task for travisci
+task assemble{}

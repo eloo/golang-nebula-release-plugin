@@ -1,0 +1,10 @@
+language: java
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+jdk:
+  - oraclejdk8
+if: tag IS blank
+
+script: "./travis/buildViaTravis.sh"
