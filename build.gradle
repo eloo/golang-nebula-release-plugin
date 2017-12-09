@@ -26,6 +26,9 @@ task pushToGit(){
 }
 finalSetup{
 	doFirst{
+		println "FILE __________________________________"
+		println new File('version.properties').text
+		println "FILE __________________________________"
 		Properties props = new Properties()
 		File propsFile = new File('version.properties')
 		props.load(propsFile.newDataInputStream())
