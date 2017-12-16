@@ -31,6 +31,7 @@ task updateVersionFile(){
 }
 
 task commitVersionFile(){
+	fin
 	dependsOn updateVersionFile
 	doLast{
 		println "Commit version.properties"
@@ -41,8 +42,8 @@ task commitVersionFile(){
 }
 
 tasks.goBuild.dependsOn updateVersionFile
-tasks.finalSetup.finalyzedBy commitVersionFile
-tasks.candidateSetup.finalyzedBy commitVersionFile
+tasks.finalSetup.finalizedBy commitVersionFile
+tasks.candidateSetup.finalizedBy commitVersionFile
 
 // Dummy task for travisci
 task assemble{}
