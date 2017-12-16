@@ -8,12 +8,14 @@ jdk:
 if: tag IS blank
 script: "./travis/buildViaTravis.sh"
 
+before_deploy:
+  - ./gradlew goBuild
+
 deploy:
   provider: releases
   api_key: "$PUSH_TOKEN"
   file_glob: true
   file: bin/*
   skip_cleanup: true
-  name: $TRAVIS_TAG
   on:
     branch: master

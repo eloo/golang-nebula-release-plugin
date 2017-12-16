@@ -1,14 +1,28 @@
+import com.github.blindpirate.gogradle.Go
 plugins {
     id 'com.github.blindpirate.gogradle' version '0.7.0'
    	id 'nebula.release' version '6.1.0'
 }
 
+def outputLocation = './bin/${PROJECT_NAME}_v' + version +'_${GOOS}_${GOARCH}${GOEXE}'
+def path = 'github.com/eloo/golang-nebula-release-plugin'
+
+def setVersionFlag='-ldflags "-X main.version=' + version + '"'
+def goFlags = setVersionFlag
+
 golang {
-    packagePath = 'github.com/eloo/golang-nebula-release-plugin'
+    packagePath = "$path"
 }
 
 goBuild {
-	outputLocation = './bin/${PROJECT_NAME}_v' + version +'_${GOOS}_${GOARCH}${GOEXE}'
+	targetPlatform = ['windows-amd64', 'linux-386', 'darwin-amd64']
+    go "build $goFlags -o ./$outputLocation $path"
+}
+
+// You should make sure golint is in your $PATH
+task build(type: Go){
+	println "build $goFlags -o ./$outputLocation $path"
+    go "build $goFlags -o ./$outputLocation $path"
 }
 
 dependencies {
