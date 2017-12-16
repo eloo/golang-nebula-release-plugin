@@ -31,7 +31,6 @@ task updateVersionFile(){
 }
 
 task commitVersionFile(){
-	fin
 	dependsOn updateVersionFile
 	doLast{
 		println "Commit version.properties"
