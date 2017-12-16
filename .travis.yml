@@ -9,7 +9,7 @@ if: tag IS blank
 script: "./travis/buildViaTravis.sh"
 
 before_deploy:
-  - ./gradlew goBuild
+  - ./gradlew -Prelease.useLastTag=true goBuild
 
 deploy:
   provider: releases
