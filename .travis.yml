@@ -10,6 +10,8 @@ script: "./travis/buildViaTravis.sh"
 
 before_deploy:
   - ./gradlew goBuild
+  on:
+    branch: master
 
 deploy:
   provider: releases
