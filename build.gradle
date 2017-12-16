@@ -7,6 +7,10 @@ golang {
     packagePath = 'github.com/eloo/golang-nebula-release-plugin'
 }
 
+goBuild {
+	outputLocation = './bin/${PROJECT_NAME}_v' + version +'_${GOOS}_${GOARCH}${GOEXE}'
+}
+
 dependencies {
     golang {
     }
