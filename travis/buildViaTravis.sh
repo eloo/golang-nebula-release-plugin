@@ -9,16 +9,16 @@ fi
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
   echo -e "Build Pull Request #$TRAVIS_PULL_REQUEST => Branch [$TRAVIS_BRANCH]"
-  ./gradlew goBuild
+  ./gradlew build
 elif [ "$TRAVIS_BRANCH" == "master" ] ; then
   echo -e 'Build Master Branch ['$TRAVIS_BRANCH']'
-  ./gradlew goBuild final
+  ./gradlew build final
 elif [ "$TRAVIS_BRANCH" == "develop" ] ; then
   echo -e 'Build Develop Branch ['$TRAVIS_BRANCH']'
-  ./gradlew goBuild snapshot
+  ./gradlew build snapshot
 else
   echo -e 'Build brand ['$TRAVIS_BRANCH']'
-  ./gradlew goBuild
+  ./gradlew build
 fi
 
 exit $EXIT
