@@ -16,3 +16,6 @@
 # Gogradle
 .gogradle
 .gradle
+
+# Binaries
+bin/

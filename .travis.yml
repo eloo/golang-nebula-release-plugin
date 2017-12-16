@@ -5,8 +5,7 @@ cache:
     - $HOME/.gradle/wrapper/
 jdk:
   - oraclejdk8
-# if: tag IS blank
-
+if: tag IS blank
 script: "./travis/buildViaTravis.sh"
 
 deploy:
@@ -15,5 +14,6 @@ deploy:
   file_glob: true
   file: bin/*
   skip_cleanup: true
+  name: $TRAVIS_TAG
   on:
     branch: master
